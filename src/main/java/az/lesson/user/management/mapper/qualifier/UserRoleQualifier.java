@@ -2,6 +2,7 @@ package az.lesson.user.management.mapper.qualifier;
 
 import az.lesson.user.management.service.RoleService;
 import lombok.RequiredArgsConstructor;
+import org.mapstruct.Named;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Component;
 public class UserRoleQualifier {
 
     private final RoleService service;
+
+//    @Named("mapRoleToUser")
 }
