@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PublicUserRegister {
+public class AdminUserRegister {
     @NotBlank
     private String username;
 
@@ -22,5 +23,7 @@ public class PublicUserRegister {
 
     // @MatchPassword
     private String confirmPassword;
-}
 
+    @NotNull
+    private Long roleId;
+}
