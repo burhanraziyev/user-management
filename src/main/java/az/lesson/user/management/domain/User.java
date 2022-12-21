@@ -31,11 +31,14 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @AllArgsConstructor
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
+@NamedEntityGraph(
+        name = "user_eg",
+        attributeNodes = @NamedAttributeNode(value = "roles"))
 public class User {
 
     @Id
-    @SequenceGenerator(name = "users_seq_gen", sequenceName = "users_seq_gen")
-    @GeneratedValue(strategy = SEQUENCE, generator = "users_seq_gen")
+    @SequenceGenerator(name = "users_seq", sequenceName = "users_seq")
+    @GeneratedValue(strategy = SEQUENCE, generator = "users_seq")
     @Column(updatable = false, nullable = false, insertable = false)
     private Long id;
 

@@ -33,8 +33,8 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Privilege {
 
     @Id
-    @SequenceGenerator(name = "privileges_seq_gen", sequenceName = "privileges_seq_gen")
-    @GeneratedValue(strategy = SEQUENCE, generator = "privileges_seq_gen")
+    @SequenceGenerator(name = "privileges_seq", sequenceName = "privileges_seq")
+    @GeneratedValue(strategy = SEQUENCE, generator = "privileges_seq")
     @Column(updatable = false, nullable = false, insertable = false)
     private Long id;
 

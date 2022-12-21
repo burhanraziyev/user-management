@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.stream.Collectors;
-
 import static java.time.LocalDateTime.now;
 
 @Slf4j
@@ -38,6 +36,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .message(ex.getMessage())
                 .build();
         log.error("ResourceConflictException: {}", mapper.writeValueAsString(error));
+        return new ResponseEntity<>(new RestErrorResponse<>(error), ex.getStatus());
+    }
+
+    @SneakyThrows
+    @ExceptionHandler(ResourceNotFoundException.class)
+    protected ResponseEntity<RestErrorResponse<RestError>> handleResourceNotFoundException(
+            ResourceNotFoundException ex) {
+        var error = RestError.builder()
+                .reason(ex.getStatus().getReasonPhrase())
+                .code(ex.getStatus().value())
+                .timestamp(now())
+                .message(ex.getMessage())
+                .build();
+        log.error("ResourceNotFoundException: {}", mapper.writeValueAsString(error));
         return new ResponseEntity<>(new RestErrorResponse<>(error), ex.getStatus());
     }
 

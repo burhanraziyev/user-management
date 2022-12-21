@@ -28,7 +28,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     public UserDto register(AdminUserRegister adminUserRegister) {
         checkUsername(adminUserRegister.getUsername());
-        //TODO find & set role
         var user = repository.saveAndFlush(mapper.toEntity(adminUserRegister));
         return mapper.toUserDto(user);
     }

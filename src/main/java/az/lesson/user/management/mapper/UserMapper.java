@@ -19,6 +19,7 @@ public interface UserMapper {
     @Mapping(target = "roles", qualifiedByName = "mapRoleToUser")
     User toEntity(AdminUserRegister adminUserRegister);
 
+    @Mapping(target = "roles", qualifiedByName = "mapDefaultRoleToUser")
     User toEntity(PublicUserRegister publicUserRegister);
 
     UserDto toUserDto(User user);
